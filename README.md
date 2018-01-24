@@ -81,17 +81,58 @@
 
 <h1> Routing và cách đặt tên route.<h1>
 
-Trong ASP.NET Web API, controller là một class chịu trách nhiệm xử lý HTTP requests. Những public method của controller được gọi là action methods hay actions. Khi framework Web API nhận một request, nó truyền request đó đến một action.Để xác định action nào sẽ được gọi, framework sử dụng một cấu trúc gọi là routing table. Routing table được cấu hình trong file WebApiConfig.cs nằm trong thư mục App_Start của project<br>
+<p>Trong ASP.NET Web API, controller là một class chịu trách nhiệm xử lý HTTP requests. Những public method của controller được gọi là action methods hay actions. 
+Khi framework Web API nhận một request, nó truyền request đó đến một action.Để xác định action nào sẽ được gọi, 
+framework sử dụng một cấu trúc gọi là routing table. Routing table được cấu hình trong file WebApiConfig.cs nằm trong thư mục App_Start của project</p></br>
 
-![](https://i.imgur.com/URNofch.jpg)<br>
+![](https://i.imgur.com/URNofch.jpg)</br>
 
-Cơ chế routing mặc định của ASP.NET Web API có thể được customize. Nếu không muốn sử dụng quy ước đặt tên các action dựa trên tên của HTTP methods, chúng ta có thể mô tả tường minh action nào sẽ map với HTTP method nào bằng cách sử dụng các attribute HttpGetAttribute, HttpPostAttribute, HttpPutAttribute, và HttpDeleteAttribute.
-Trong ví dụ dưới đây, method FindProduct được map tới GET request
-public class ProductController : ApiController<br>
+<p>Cơ chế routing mặc định của ASP.NET Web API có thể được customize. Nếu không muốn sử dụng quy ước đặt tên các action dựa trên tên của HTTP methods, 
+chúng ta có thể mô tả tường minh action nào sẽ map với HTTP method nào bằng cách sử dụng các attribute HttpGetAttribute, HttpPostAttribute, HttpPutAttribute, và HttpDeleteAttribute.</p>
+<p>Trong ví dụ dưới đây, method FindProduct được map tới GET request
+public class ProductController : ApiController<p></br>
 
-![](https://i.imgur.com/M3gC9hZ.jpg)<br>
+![](https://i.imgur.com/M3gC9hZ.jpg)</br>
 
-Với route template mặc định, Web API sử dụng HTTP methods để xác định action. Nếu muốn thay đổi URI của HTTP request, chúng ta có thể thêm vào các route ngoài route mặc định như ví dụ sau<br>
+<p>Với route template mặc định, Web API sử dụng HTTP methods để xác định action. Nếu muốn thay đổi URI của HTTP request, chúng ta có thể thêm vào các route ngoài route mặc định như ví dụ sau</p></br>
 
-![](https://i.imgur.com/d9ckNez.jpg)<br>
+![](https://i.imgur.com/d9ckNez.jpg)</br>
+
+
+<h1>Mô hình Controller - Repository - Entity - Model</h1>
+<p>MVC là cụm từ viết tắt của Model-View-Controller, nó phân chia pattern của ứng dụng thành 3 phần - model, controller và view.</p>
+<ul>
+<li><b>Model</b> Chứa toàn bộ hay tất cả các nghiệp vụ logic, các phương thức giúp xử lý và truy xuất database, các đối tượng mô tả dữ liệu như Class, hàm xử lý</li>
+<li><b>View</b> có khả năng tiếp nhận dữ liệu từ controller và sẽ hiển thị nội dung đến giao diện người dùng bằng các đoạn mã dưới dạng HTML. Trong ASP.NET Core sẽ sử dụng Razor để đưa các code .NET đến HTML.</li>
+<li><b>Controller</b> là thành phần giúp xử lý các tương tác người dùng, là nơi làm việc với các Model, và cuối cùng là lựa chọn một View thích hợp để hiển thị. 
+Trong một ứng dụng MVC, View là nơi chỉ để hiển thị thông tin, Controller là nơi xử lý và phản ứng và tương tác với người dùng. 
+Trong mô hình MVC, Controller là điểm khởi đầu, có trách nhiệm lựa chọn các Model để làm việc và View để hiển thị</li>
+</ul>
+
+<h1>Entity Framework</h1>
+<p><b>ADO.NET Entity Framework</b> là một nền tảng được sử dụng để làm việc với database thông qua cơ chế ánh xạ Object/Relational Mapping (ORM). 
+Nhờ đó, bạn có thể truy vấn, thao tác với database gián tiếp thông qua các đối tượng lập trình.</p>
+<img src="https://i.imgur.com/5UikYEo.png">
+<p><b>Object Services</b>: Đây là các class tự động sinh ra tương ứng với mô hình dữ liệu. Các class này bao gồm:</p>
+<ul>
+<li><b>ObjectContext</b> đại diện cho một database. ObjectContext có chức năng quản lý các kết nối, định nghĩa mô hình dữ liệu với metadata và thao tác với database. 
+<li>Lớp này cũng có thể thêm vào các phương thức đại diện cho các stored procedure trong database.</li>
+<li><b>ObjectSet<TEntity></b> là một  một tập hợp các entity. Mỗi đối tượng này tương ứng với một table. Có thể lấy được các đối tượng này thông qua các property tương ứng của ObjectContext.</li>
+<li><b>EntityObject, ComplexObject</b> là các lớp tương ứng cho một dòng dữ liệu của table trong database. Khác biệt chính giữa hai loại này là ComplexObject không chứa primary key.</li>
+<li><b>EntityCollection<TEntity> và EntityReference<TEntity></b>: là các đối tượng thể hiện mối quan hệ (relationship) giữa hai entity class. Mỗi đối tượng này có thể được truy xuất thông qua các property của entity class.</li>
+</ul>
+<h1>Repository</h1>
+<p><b>Repository</b>: là một lớp trung gian giữa hai tầng business(Business Service Layer) và tầng truy xuất dữ liệu (DAL). 
+Trong project sử dụng Entity Framework với ASP.NET MVC thì Data chính là tầng chứa các lớp dbContext và class enttiy. Còn business logic chính là tầng xử lý nghiệp vụ của dự án. 
+Repository hầu hết được sử dụng những chỗ cần điều chỉnh dữ liệu trước khi truyền xuống tầng data hoặc truyền lên trên business logic. Những logic đó có thể được định nghĩa sử dụng Repository Pattern</p>
+<img src="https://i.imgur.com/uks2NWR.png">
+<p>Generic Repository Pattern - Trong các trường hợp khác, dự án lại đòi hỏi một cách tốt nhất để tạo ra tất cả các repository logic ở cùng một nơi. 
+Chúng ta cần tạo 1 và chỉ 1 repository cho việc thao tác với toàn bộ các class entity. Vậy để giải quyết điều này chúng ta phải sử dụng Generic Repository Pattern.<p>
+<img src="https://i.imgur.com/mD0ufUQ.jpg">
+<p>Cách tạo 1 Entity-Framework Code First: truy cập vào link sau để làm theo hướng dẫn</p>
+<ul>
+<li>Bước 1: http://khiemnguyen.xyz/su-dung-entity-framework-code-first-trong-asp-net-mvc/</li>
+<li>Bước 2: http://khiemnguyen.xyz/su-dung-entity-framework-database-first-trong-asp-net-mvc/</li>
+</ul>
+
 
