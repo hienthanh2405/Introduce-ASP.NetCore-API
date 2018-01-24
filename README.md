@@ -118,13 +118,15 @@ Nhờ đó, bạn có thể truy vấn, thao tác với database gián tiếp th
 <li><b>ObjectContext</b> đại diện cho một database. ObjectContext có chức năng quản lý các kết nối, định nghĩa mô hình dữ liệu với metadata và thao tác với database. 
 <li>Lớp này cũng có thể thêm vào các phương thức đại diện cho các stored procedure trong database.</li>
 <li><b>ObjectSet<TEntity></b> là một  một tập hợp các entity. Mỗi đối tượng này tương ứng với một table. Có thể lấy được các đối tượng này thông qua các property tương ứng của ObjectContext.</li>
-<li><b>EntityObject, ComplexObject</b> là các lớp tương ứng cho một dòng dữ liệu của table trong database. Khác biệt chính giữa hai loại này là ComplexObject không chứa primary key.</li>
+<li><b>EntityObject, ComplexObject</b> là các lớp tương ứng cho một dòng dữ liệu của table trong database. Khác biệt chính giữa hai loại này là ComplexObject không chứa <mark>primary key</mark>.</li>
 <li><b>EntityCollection<TEntity> và EntityReference<TEntity></b>: là các đối tượng thể hiện mối quan hệ (relationship) giữa hai entity class. Mỗi đối tượng này có thể được truy xuất thông qua các property của entity class.</li>
 </ul>
+<p>Bảng ánh xạ tương đương sau giữa các đối tượng trong database và EF:</p>
+<img src="https://i.imgur.com/yc0UDt6.png">
 <h1>Repository</h1>
 <p><b>Repository</b>: là một lớp trung gian giữa hai tầng business(Business Service Layer) và tầng truy xuất dữ liệu (DAL). 
 Trong project sử dụng Entity Framework với ASP.NET MVC thì Data chính là tầng chứa các lớp dbContext và class enttiy. Còn business logic chính là tầng xử lý nghiệp vụ của dự án. 
-Repository hầu hết được sử dụng những chỗ cần điều chỉnh dữ liệu trước khi truyền xuống tầng data hoặc truyền lên trên business logic. Những logic đó có thể được định nghĩa sử dụng Repository Pattern</p>
+Repository hầu hết được sử dụng những chỗ cần điều chỉnh dữ liệu trước khi truyền xuống tầng data hoặc truyền lên trên business logic. Những logic đó có thể được định nghĩa sử dụng <mark>Repository Pattern</mark></p>
 <img src="https://i.imgur.com/uks2NWR.png">
 <p>Generic Repository Pattern - Trong các trường hợp khác, dự án lại đòi hỏi một cách tốt nhất để tạo ra tất cả các repository logic ở cùng một nơi. 
 Chúng ta cần tạo 1 và chỉ 1 repository cho việc thao tác với toàn bộ các class entity. Vậy để giải quyết điều này chúng ta phải sử dụng Generic Repository Pattern.<p>
