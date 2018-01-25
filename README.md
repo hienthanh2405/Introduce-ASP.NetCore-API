@@ -1,7 +1,7 @@
 # Introduce-ASP.NetCore-API
 This is a project to introduce ASP.Net Core for Web API
 
-<h1> Routing và cách đặt tên route.<h1>
+<h1> Routing và cách đặt tên route.</h1>
 
 Trong ASP.NET Web API, controller là một class chịu trách nhiệm xử lý HTTP requests. Những public method của controller được gọi là action methods hay actions. Khi framework Web API nhận một request, nó truyền request đó đến một action.Để xác định action nào sẽ được gọi, framework sử dụng một cấu trúc gọi là routing table. Routing table được cấu hình trong file WebApiConfig.cs nằm trong thư mục App_Start của project<br>
 
