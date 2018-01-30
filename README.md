@@ -25,7 +25,6 @@
  
  ## Biến sẵn có của POSTMAN
 
-
 ## Export trong POSTMAN
   - Export: Dùng để share Collection với các thành viên khác trong team , ta có thể export nó ra file json sau đấy gửi cho member khác     và họ có thể import vào và dùng luôn trực tiếp được. 
   - Share Colection :Có chức năng tương tự Export, Share Collection dưới dạng link online, với link này ta có thể gửi cho team member và   người đó có thể dùng Postman để mở nó.
