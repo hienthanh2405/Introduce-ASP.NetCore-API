@@ -126,11 +126,11 @@ Nhờ đó, bạn có thể truy vấn, thao tác với database gián tiếp th
 <p>Thiết lập Automapper trong ASP.NET Core</p>
 <p><b>Bước 1. Thêm gói chính AutoMapper vào giải pháp của bạn thông qua <a href="https://www.nuget.org/packages/AutoMapper/" target="_blank">NuGet</a> .</b></p>
 <p><b>Bước  2. Thêm gói AutoMapper Dependency Injection vào giải pháp của bạn thông qua <a href="https://www.nuget.org/packages/AutoMapper.Extensions.Microsoft.DependencyInjection/" target="_blank">NuGet</a> .</b></p>
-<p><b>Bước  3. Gọi cho AddAutoMapper()phần mở rộng từ Startup.csnhư được hiển thị bên dưới.</b></p>
+<p><b>Bước  3. Gọi cho AddAutoMapper() kế thừa từ file Startup.cs như được hiển thị bên dưới.</b></p>
 <img src="https://i.imgur.com/NJohTNo.png">
-<p><b>Bước  4. Tạo một lớp mới cho một hồ sơ bản đồ. (Tôi đã tạo một lớp trong thư mục giải pháp chính được gọi là MappingProfile.csvà thêm mã sau đây) Tôi sẽ sử dụng a Uservà UserDtoobject làm ví dụ.</b></p>
+<p><b>Bước  4. Tạo một lớp mới cho mapping profile. (Tạo một lớp trong thư mục main solution directory tên là MappingProfile.cs và thêm mã sau đây). Sử dụng a Uservà UserDtoobject làm ví dụ.</b></p>
 <img src="https://i.imgur.com/kBwuJCG.png">
-<p><b>Bước  5. Để gọi đối tượng được ánh xạ trong mã lệnh, hãy làm một cái gì đó như sau:</b></p>
+<p><b>Bước  5. Để gọi đối tượng mapper trong code, hãy chèn câu lệnh bên dưới:</b></p>
 <img src="https://i.imgur.com/HfcQDWx.png">
 
 
